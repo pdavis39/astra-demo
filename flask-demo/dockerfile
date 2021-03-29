@@ -1,0 +1,18 @@
+FROM python:3.6.13-buster
+
+Maintainer "pdavis39@gmail.com"
+
+RUN apt-get update -y
+RUN apt-get install -y python3-pip python3-dev python-pip build-essential libsm6 libxext6 libxrender-dev
+
+COPY . /app
+
+WORKDIR /app
+
+RUN pip3 install -r requirements.txt
+
+EXPOSE 3000
+
+ENTRYPOINT [ "python3" ]
+
+CMD [ "app.py" ]
